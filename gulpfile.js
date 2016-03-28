@@ -1,0 +1,68 @@
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var bower = require('bower');
+var concat = require('gulp-concat');
+var sass = require('gulp-sass');
+var minifyCss = require('gulp-minify-css');
+var rename = require('gulp-rename');
+var sh = require('shelljs');
+
+var paths = {
+    app: ['./app/**/*.ts'],
+    sass: ['./app/**/*.scss']
+};
+
+/**
+ * Ionic Gulp tasks, for more information on each see
+ * https://github.com/driftyco/ionic-gulp-tasks
+ *
+ * Using these will allow you to stay up to date if the default Ionic 2 build
+ * changes, but you are of course welcome (and encouraged) to customize your
+ * build however you see fit.
+ */
+var buildBrowserify = require('ionic-gulp-browserify-typescript');
+var buildSass = require('ionic-gulp-sass-build');
+var copyHTML = require('ionic-gulp-html-copy');
+var copyFonts = require('ionic-gulp-fonts-copy');
+var copyScripts = require('ionic-gulp-scripts-copy');
+
+
+gulp.task('watch', function() {
+    gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.app, ['compile']);
+});
+
+gulp.task('watch', ['sass', 'html', 'fonts', 'scripts'], function(){
+  gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
+  gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
+  return buildBrowserify({ watch: true });
+});
+
+gulp.task('install', ['git-check'], function() {
+    return bower.commands.install()
+        .on('log', function(data) {
+            gutil.log('bower', gutil.colors.cyan(data.id), data.message);
+        });
+});
+
+gulp.task('git-check', function(done) {
+    if (!sh.which('git')) {
+        console.log(
+            '  ' + gutil.colors.red('Git is not installed.'),
+            '\n  Git, the version control system, is required to download Ionic.',
+            '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
+            '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
+        );
+        process.exit(1);
+    }
+    done();
+});
+
+gulp.task('build', ['sass', 'html', 'fonts', 'scripts'], buildBrowserify);
+gulp.task('sass', buildSass);
+gulp.task('html', copyHTML);
+gulp.task('fonts', copyFonts);
+gulp.task('scripts', copyScripts);
+gulp.task('clean', function(done){
+  del('www/build', done);
+});
