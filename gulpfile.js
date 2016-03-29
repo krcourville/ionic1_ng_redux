@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gulpWatch = require('gulp-watch');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
@@ -9,7 +10,8 @@ var sh = require('shelljs');
 
 var paths = {
     app: ['./app/**/*.ts'],
-    sass: ['./app/**/*.scss']
+    sass: ['./www/lib/scss/**/*.scss','./app/**/*.scss'],
+    html: ['./app/**/*.html']
 };
 
 /**
@@ -26,15 +28,9 @@ var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 var copyScripts = require('ionic-gulp-scripts-copy');
 
-
-gulp.task('watch', function() {
-    gulp.watch(paths.sass, ['sass']);
-    gulp.watch(paths.app, ['compile']);
-});
-
-gulp.task('watch', ['sass', 'html', 'fonts', 'scripts'], function(){
-  gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
-  gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
+gulp.task('watch', ['build'], function(){    
+  gulpWatch(paths.sass, function(){ gulp.start('sass'); });
+  gulpWatch(paths.html, function(){ gulp.start('html'); });
   return buildBrowserify({ watch: true });
 });
 

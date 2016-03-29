@@ -1,3 +1,4 @@
+/// <reference path="main/ambient/angular-ui-router/index.d.ts" />
 /// <reference path="main/ambient/angular/index.d.ts" />
 /// <reference path="main/ambient/cordova-ionic/index.d.ts" />
 /// <reference path="main/ambient/cordova-ionic/plugins/keyboard/index.d.ts" />
