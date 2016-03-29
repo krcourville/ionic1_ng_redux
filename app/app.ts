@@ -2,7 +2,7 @@ import {ShellDirective} from './shell/shell.directive';
 import {DashController} from './dash/dash.controller';
 
 angular
-    .module('crm', ['ionic'])
+    .module('crm', ['ionic', 'jett.ionic.filter.bar'])
 
     .directive('crmShell', ShellDirective)
 

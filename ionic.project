@@ -5,6 +5,7 @@
     "watch"
   ],
   "watchPatterns": [
+    "gulpfile.js",
     "app/**/*",
     "www/**/*",
     "!www/lib/**/*"

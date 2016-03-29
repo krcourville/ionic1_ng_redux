@@ -1,9 +1,15 @@
 <ion-view title="CRM">
-    <ion-nav-buttons side="right">
+    <ion-nav-buttons side="primary">
         <button class="button button-clear">
             Add
         </button>
     </ion-nav-buttons>
+    
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="dashCtrl.showFilterBar()">
+        </button>        
+    </ion-nav-buttons>
+        
     <ion-content>
         Hello?
     </ion-content>

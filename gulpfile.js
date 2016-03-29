@@ -7,13 +7,6 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
-
-var paths = {
-    app: ['./app/**/*.ts'],
-    sass: ['./www/lib/scss/**/*.scss','./app/**/*.scss'],
-    html: ['./app/**/*.html']
-};
-
 /**
  * Ionic Gulp tasks, for more information on each see
  * https://github.com/driftyco/ionic-gulp-tasks
@@ -23,10 +16,17 @@ var paths = {
  * build however you see fit.
  */
 var buildBrowserify = require('ionic-gulp-browserify-typescript');
-var buildSass = require('ionic-gulp-sass-build');
+var sassBuild = require('ionic-gulp-sass-build');
 var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 var copyScripts = require('ionic-gulp-scripts-copy');
+
+var paths = {
+    app: ['./app/**/*.ts'],
+    sass: [ './app/**/*.scss' ],
+    html: ['./app/**/*.html']
+};
+
 
 gulp.task('watch', ['build'], function(){    
   gulpWatch(paths.sass, function(){ gulp.start('sass'); });
@@ -55,7 +55,18 @@ gulp.task('git-check', function(done) {
 });
 
 gulp.task('build', ['sass', 'html', 'fonts', 'scripts'], buildBrowserify);
-gulp.task('sass', buildSass);
+gulp.task('sass', sassBuild);
+gulp.task('sass', function(){
+    return sassBuild({
+        src: paths.sass,
+        dest: 'www/css',
+        sassOptions : {
+            includePaths: [
+                './www/lib/ionic/fonts'
+            ]            
+        }
+    });
+});
 gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
 gulp.task('scripts', copyScripts);
