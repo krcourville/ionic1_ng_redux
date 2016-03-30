@@ -1,20 +1,31 @@
 <ion-view title="CRM">
     <ion-nav-buttons side="primary">
-        <button class="button button-clear">
-            Add
+        <button class="button button-clear icon ion-plus">
         </button>
     </ion-nav-buttons>
-    
+
     <ion-nav-buttons side="secondary">
-        <button class="button button-icon icon ion-ios-search-strong" ng-click="dashCtrl.showFilterBar()">
-        </button>        
+        <button class="button button-icon icon ion-search" ng-click="dashCtrl.showFilterBar()">
+        </button>
     </ion-nav-buttons>
-        
-    <ion-content padding="true">
-        <crm-contact-list 
-            items="dashCtrl.contacts"
-            view="dashCtrl.contactView"
-            item-selected="dashCtrl.onContactSelected">
-        </crm-contact-list>
-    </ion-content>
+
+
+    <crm-contact-list 
+        items="dashCtrl.contacts" 
+        view="dashCtrl.contactView" 
+        item-selected="dashCtrl.onContactSelected">
+    </crm-contact-list>
+
+    <ion-footer-bar class="bar-stable">
+        <div class="buttons">
+            <button class="button">Recent</button>
+        </div>
+        <h1 class="title">&nbsp;</h1>
+        <div class="buttons">
+            <button class="button button-badge button-icon icon icon-right ion-flag">                
+                <span class="badge badge-calm">0</span>                
+            </button>
+        </div>
+    </ion-footer-bar>
+
 </ion-view>

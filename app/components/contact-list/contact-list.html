@@ -1,6 +1,5 @@
-<div>
-    <h2>Contacts</h2>
-    <p ng-repeat="item in contactListCtrl.items">
-        {{item.firstName}}
-    </p>
-</div>
+<ion-content>
+    <ion-item collection-repeat="item in contactListCtrl.items">
+        {{ ::item.firstName}} {{ ::item.lastName}}
+    </ion-item>
+</ion-content>
