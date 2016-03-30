@@ -7,3 +7,4 @@ plugins/
 www/lib
 www/build
 www/css
+typings
