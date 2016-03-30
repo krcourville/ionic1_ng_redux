@@ -4,14 +4,17 @@ Attempting to create a sample app with Ionic 1, Angular 1, Redux, and Typescript
 
 ## Setup
 
-* Install NodeJS
-* `npm update npm -g`
-* `npm install bower -g`
-* `npm install ionic -g`
-* `npm install cordova -g`
-* `npm install gulp-cli -g` (Optional: Useful when modifying/debuging build)
-* `npm install`
-* `bower install`
+Install NodeJS
+
+        npm update npm -g
+        npm install bower -g
+        npm install ionic -g
+        npm install cordova -g
+        npm install gulp-cli -g
+        npm install
+        npm install typings -g
+        typings install
+        bower install
 
 ## Development
 
