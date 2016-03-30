@@ -1,10 +1,12 @@
 import {ShellDirective} from './shell/shell.directive';
 import {DashController} from './pages/dash/dash.controller';
+import {ContactListDirective} from './components/contact-list/contact-list.directive';
 
 angular
     .module('crm', ['ionic', 'jett.ionic.filter.bar'])
 
     .directive('crmShell', ShellDirective)
+    .directive('crmContactList', ContactListDirective)
 
     .config(function($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) {
         $stateProvider

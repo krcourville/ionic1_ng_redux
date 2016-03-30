@@ -11,6 +11,10 @@
     </ion-nav-buttons>
         
     <ion-content padding="true">
-        Hello?
+        <crm-contact-list 
+            items="dashCtrl.contacts"
+            view="dashCtrl.contactView"
+            item-selected="dashCtrl.onContactSelected">
+        </crm-contact-list>
     </ion-content>
 </ion-view>
