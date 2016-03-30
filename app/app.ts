@@ -1,5 +1,5 @@
 import {ShellDirective} from './shell/shell.directive';
-import {DashController} from './dash/dash.controller';
+import {DashController} from './pages/dash/dash.controller';
 
 angular
     .module('crm', ['ionic', 'jett.ionic.filter.bar'])
@@ -10,7 +10,7 @@ angular
         $stateProvider
             .state('index', {
                 url: '/',
-                templateUrl: '/build/dash/dash.html',
+                templateUrl: '/build/pages/dash/dash.html',
                 controller: DashController,
                 controllerAs: 'dashCtrl'
             });
