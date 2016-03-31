@@ -7,6 +7,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var wiredep = require('wiredep');
 /**
  * Ionic Gulp tasks, for more information on each see
  * https://github.com/driftyco/ionic-gulp-tasks
@@ -54,8 +55,8 @@ gulp.task('git-check', function(done) {
     done();
 });
 
-gulp.task('build', ['sass', 'html', 'fonts', 'scripts'], buildBrowserify);
-gulp.task('sass', sassBuild);
+gulp.task('build', ['bower-depends', 'sass', 'html', 'fonts', 'scripts'], buildBrowserify);
+
 gulp.task('sass', function(){
     return sassBuild({
         src: paths.sass,
@@ -67,9 +68,22 @@ gulp.task('sass', function(){
         }
     });
 });
+
 gulp.task('html', copyHTML);
+
 gulp.task('fonts', copyFonts);
+
 gulp.task('scripts', copyScripts);
+
 gulp.task('clean', function(done){
   del('www/build', done);
+});
+
+gulp.task('bower-depends', function(){
+    gulp.src('./app/index.html')
+        .pipe(gulp.dest('./www'));
+    
+    gulp.src('./www/index.html')
+        .pipe(wiredep.stream())
+        .pipe(gulp.dest('./www'));
 });
