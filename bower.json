@@ -2,7 +2,10 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4",
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "ng-redux": "^3.3.0",
     "ionic-filter-bar": "~1.1.1"
   }
 }
