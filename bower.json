@@ -4,8 +4,7 @@
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
-  "dependencies": {
-    "ng-redux": "^3.3.0",
+  "dependencies": {    
     "ionic-filter-bar": "~1.1.1"
   }
 }

@@ -7,3 +7,4 @@
 /// <reference path="browser/ambient/cordova/plugins/statusbar/index.d.ts" />
 /// <reference path="browser/ambient/ionic/index.d.ts" />
 /// <reference path="browser/ambient/jquery/index.d.ts" />
+/// <reference path="browser/definitions/redux/index.d.ts" />

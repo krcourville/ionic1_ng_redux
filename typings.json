@@ -9,5 +9,8 @@
     "cordova/plugins/statusbar": "registry:dt/cordova/plugins/statusbar#0.0.0+20160316155526",
     "ionic": "registry:dt/ionic#0.0.0+20160317120654",
     "jquery": "registry:dt/jquery#1.10.0+20160316155526"
+  },
+  "dependencies": {
+    "redux": "registry:npm/redux#3.0.6+20160214194820"
   }
 }
