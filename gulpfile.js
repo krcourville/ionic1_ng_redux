@@ -1,13 +1,15 @@
-var gulp = require('gulp');
-var gulpWatch = require('gulp-watch');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
-var wiredep = require('wiredep');
+var 
+    gulp = require('gulp'),
+    gulpWatch = require('gulp-watch'),
+    gutil = require('gulp-util'),
+    bower = require('bower'),
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass'),
+    minifyCss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    sh = require('shelljs'),
+    wiredep = require('wiredep'),
+    fs = require('fs');
 /**
  * Ionic Gulp tasks, for more information on each see
  * https://github.com/driftyco/ionic-gulp-tasks
@@ -16,11 +18,12 @@ var wiredep = require('wiredep');
  * changes, but you are of course welcome (and encouraged) to customize your
  * build however you see fit.
  */
-var buildBrowserify = require('ionic-gulp-browserify-typescript');
-var sassBuild = require('ionic-gulp-sass-build');
-var copyHTML = require('ionic-gulp-html-copy');
-var copyFonts = require('ionic-gulp-fonts-copy');
-var copyScripts = require('ionic-gulp-scripts-copy');
+var 
+    buildBrowserify = require('ionic-gulp-browserify-typescript'),
+    sassBuild = require('ionic-gulp-sass-build'),
+    copyHTML = require('ionic-gulp-html-copy'),
+    copyFonts = require('ionic-gulp-fonts-copy'),
+    copyScripts = require('ionic-gulp-scripts-copy');
 
 var paths = {
     app: ['./app/**/*.ts'],
@@ -55,7 +58,7 @@ gulp.task('git-check', function(done) {
     done();
 });
 
-gulp.task('build', ['bower-depends', 'sass', 'html', 'fonts', 'scripts'], buildBrowserify);
+gulp.task('build', ['sass', 'html', 'fonts', 'scripts'], buildBrowserify);
 
 gulp.task('sass', function(){
     return sassBuild({
@@ -69,7 +72,7 @@ gulp.task('sass', function(){
     });
 });
 
-gulp.task('html', copyHTML);
+gulp.task('html', ['bower-depends'],copyHTML);
 
 gulp.task('fonts', copyFonts);
 
@@ -79,9 +82,33 @@ gulp.task('clean', function(done){
   del('www/build', done);
 });
 
-gulp.task('bower-depends', function(done){
+gulp.task('bower-depends', function(){    
     return gulp.src('./app/index.html')
         .pipe(gulp.dest('./www'))
         .pipe(wiredep.stream())
         .pipe(gulp.dest('./www'));
 });
+
+function copyFile(source, target, cb) {
+  var cbCalled = false;
+
+  var rd = fs.createReadStream(source);
+  rd.on("error", function(err) {
+    done(err);
+  });
+  var wr = fs.createWriteStream(target);
+  wr.on("error", function(err) {
+    done(err);
+  });
+  wr.on("close", function(ex) {
+    done();
+  });
+  rd.pipe(wr);
+
+  function done(err) {
+    if (!cbCalled) {
+      cb(err);
+      cbCalled = true;
+    }
+  }
+}
