@@ -82,8 +82,6 @@ gulp.task('clean', function(done){
 gulp.task('bower-depends', function(done){
     return gulp.src('./app/index.html')
         .pipe(gulp.dest('./www'))
-    
-    // gulp.src('./www/index.html')
         .pipe(wiredep.stream())
         .pipe(gulp.dest('./www'));
 });
