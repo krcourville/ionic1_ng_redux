@@ -1,5 +1,5 @@
 <ion-content class="has-subheader">
-    <ion-item collection-repeat="item in contactListCtrl.items">
+    <ion-item ng-class="{'active' : true}" collection-repeat="item in contactListCtrl.items" ng-click="contactListCtrl.onItemClicked(item)">
         {{ ::item.firstName}} {{ ::item.lastName}}
     </ion-item>
 </ion-content>

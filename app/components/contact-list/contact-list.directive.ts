@@ -2,10 +2,14 @@
  * ContactListController
  */
 class ContactListController {
-    static $inject: Array<string> = [];
     constructor() {
-        var vm = this;
     }
+    
+    onItemClicked(item){
+        console.log('item', item);
+    }
+    
+    itemSelected(item){}
 }
 
 export function ContactListDirective(): ng.IDirective {
@@ -14,9 +18,11 @@ export function ContactListDirective(): ng.IDirective {
         templateUrl: '/build/components/contact-list/contact-list.html',
         controller: ContactListController,
         controllerAs: 'contactListCtrl',
-        scope: {
-            "items": "="
+        scope: {            
         },
-        bindToController: true
+        bindToController: {
+            'items' : '=',
+            'itemSelected': '&'
+        }
     };
 }

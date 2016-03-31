@@ -11,7 +11,6 @@ export class DashController {
         // console.log('CounterActions', CounterActions);
         const unsubscribe = $ngRedux.connect(this.mapStateToThis, ContactsActions)(this.contactlist);
         $scope.$on('$destroy', unsubscribe);
-        console.log('this', this);
     }
 
     showFilterBar() {
@@ -19,6 +18,7 @@ export class DashController {
     }
     
     mapStateToThis(state){
+        console.log({state});
         return {
             items: state.contacts
         };
