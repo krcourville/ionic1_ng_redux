@@ -79,11 +79,11 @@ gulp.task('clean', function(done){
   del('www/build', done);
 });
 
-gulp.task('bower-depends', function(){
-    gulp.src('./app/index.html')
-        .pipe(gulp.dest('./www'));
+gulp.task('bower-depends', function(done){
+    return gulp.src('./app/index.html')
+        .pipe(gulp.dest('./www'))
     
-    gulp.src('./www/index.html')
+    // gulp.src('./www/index.html')
         .pipe(wiredep.stream())
         .pipe(gulp.dest('./www'));
 });
