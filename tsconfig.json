@@ -7,8 +7,7 @@
   },
   "filesGlob": [
     "**/*.ts",
-    "!node_modules/**/*",
-    "!www/lib/**/*"
+    "!node_modules/**/*"
   ],
   "exclude": [
     "node_modules",
