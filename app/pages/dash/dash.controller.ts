@@ -5,7 +5,7 @@ import * as ContactsActions from '../../app-state/contacts-actions';
 export class DashController {
 
     private contactlist = {};
-    
+
     static $inject = ['$scope', '$ionicFilterBar', '$ngRedux'];
     constructor(private $scope, private $ionicFilterBar, private $ngRedux) {
         // console.log('CounterActions', CounterActions);
@@ -16,9 +16,9 @@ export class DashController {
     showFilterBar() {
         this.$ionicFilterBar.show();
     }
-    
-    mapStateToThis(state){
-        console.log({state});
+
+    mapStateToThis(state) {
+        console.log({ state });
         return {
             items: state.contacts
         };

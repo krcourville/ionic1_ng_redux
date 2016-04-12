@@ -1,37 +1,44 @@
 <ion-view title="CRM">
+    <!--Buttons-->
     <ion-nav-buttons side="primary">
         <button class="button button-clear icon ion-plus">
         </button>
     </ion-nav-buttons>
 
+    <!--Filter Bar-->
     <ion-nav-buttons side="secondary">
         <button class="button button-icon icon ion-search" ng-click="dashCtrl.showFilterBar()">
         </button>
     </ion-nav-buttons>
-    
+
+    <!--Display Format Segment-->
     <div class="bar bar-subheader">
         <div class="button-bar">
             <a class="button">first last</a>
             <a class="button">last, first</a>
-            <a class="button">business</a>            
+            <a class="button">business</a>
         </div>
     </div>
 
-
-    <crm-contact-list 
-        items="dashCtrl.contactlist.items" 
-        view="dashCtrl.contactView" 
-        item-selected="dashCtrl.contactlist.select">
-    </crm-contact-list>
-
+    <!--Contact List-->
+    <ion-content class="has-subheader">
+        <ion-item 
+            ng-class="{'active' : true}" 
+            collection-repeat="item in dashCtrl.contactlist.items" 
+            ng-click="dashCtrl.contactlist.select($index)">
+            {{ ::item.firstName}} {{ ::item.lastName}}
+        </ion-item>
+    </ion-content>
+    
+    <!--Footer bar-->
     <ion-footer-bar class="bar-stable">
         <div class="buttons">
             <button class="button">Recent</button>
         </div>
         <h1 class="title">&nbsp;</h1>
         <div class="buttons">
-            <button class="button button-badge button-icon icon icon-right ion-flag">                
-                <span class="badge badge-calm">0</span>                
+            <button class="button button-badge button-icon icon icon-right ion-flag">
+                <span class="badge badge-calm">0</span>
             </button>
         </div>
     </ion-footer-bar>

@@ -5,7 +5,7 @@ export const SELECT_CONTACT = 'SELECT_CONTACT';
 
 export interface ContactAction {
     type: string,
-    contact: Contact
+    targetIndex: number
 };
 
 export function archive(contact: Contact) {
@@ -17,7 +17,7 @@ export function archive(contact: Contact) {
 
 export function select(contact: Contact) {
     return {
-        type: ARCHIVE_CONTACT,
+        type: SELECT_CONTACT,
         contact: contact
     };
 }

@@ -1,6 +1,6 @@
 {
   "ambientDependencies": {
-    "angular": "registry:dt/angular#1.5.0+20160320081937",
+    "angular": "registry:dt/angular#1.5.0+20160328125810",
     "cordova": "registry:dt/cordova#0.0.0+20160316155526",
     "cordova-ionic": "registry:dt/cordova-ionic#0.0.0+20160316155526",
     "cordova-ionic/plugins/keyboard": "registry:dt/cordova-ionic/plugins/keyboard#0.0.0+20160317120654",

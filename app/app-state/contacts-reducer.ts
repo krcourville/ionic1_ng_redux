@@ -7,17 +7,32 @@ const defaultdata: Array<Contact> = [
 ];
 
 export default function counter(state: Array<Contact> = defaultdata, action: ContactAction) {
+        console.log({action:action});
     switch (action.type) {
-        case ARCHIVE_CONTACT:
-            return state.filter(s => s !== action.contact);
-
+        // case ARCHIVE_CONTACT:
+        //     return state.filter(s => s !== action.contact);
         case SELECT_CONTACT:
-            return state.map(c => {
-                if (c = action.contact) {
-                    c.isSelected = true;
+            const result = state.slice().map((m, idx)=>{
+                if(idx == action.targetIndex){
+                  return angular.extend({}, m, {
+                      isSelected:true
+                  });
+                } else {
+                    return m;
                 }
-                return c;
             });
+            console.log({result});
+            return result;
+            // return [
+            //     ...state.slice(0, action.targetIndex),
+            //     //
+            //     // TODO: Don't use angular.extend for this
+            //     // Object.assign? or Immutable?
+            //     angular.extend({}, state[action.targetIndex], {
+            //         isSelected: true
+            //     }),
+            //     ...state.slice(action.targetIndex + 2)
+            // ];
 
         default:
             return state;
