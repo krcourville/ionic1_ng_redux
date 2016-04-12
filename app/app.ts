@@ -3,7 +3,7 @@ import {DashController} from './pages/dash/dash.controller';
 import {ContactListDirective} from './components/contact-list/contact-list.directive';
 
 import 'ng-redux';
-import rootReducer from './app-state/root-reducer';
+import rootReducer from './data/root-reducer';
 // import { default as DevTools, runDevTools} from 
 
 angular

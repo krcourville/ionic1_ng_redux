@@ -23,10 +23,10 @@
     <!--Contact List-->
     <ion-content class="has-subheader">
         <ion-item 
-            ng-class="{'active' : true}" 
-            collection-repeat="item in dashCtrl.contactlist.items" 
-            ng-click="dashCtrl.contactlist.select($index)">
-            {{ ::item.firstName}} {{ ::item.lastName}}
+            ng-class="{'active' : dashCtrl.selectedItemIndex === $index}" 
+            collection-repeat="item in dashCtrl.items" 
+            ng-click="dashCtrl.select($index)">
+            {{ item.firstName}} {{ item.lastName}}
         </ion-item>
     </ion-content>
     
